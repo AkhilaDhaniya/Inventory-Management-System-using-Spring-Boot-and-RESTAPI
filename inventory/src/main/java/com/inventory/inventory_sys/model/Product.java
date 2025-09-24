@@ -6,6 +6,7 @@ import jakarta.persistence.* ;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -16,21 +17,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Productid")   // matches your DB column exactly
-    private int Productid;
+    private Integer Productid;
 
-    @Column(name="ProductName", nullable=false, length=50)
+    @Column(name="ProductName", nullable=false, length=20)
     private String ProductName;
 
-    @Column(name="CostPrice")
+    @Column(name="CostPrice", nullable = true)
     private Double CostPrice;
 
-    @Column(name="SellingPrice")
+    @Column(name="SellingPrice", nullable = true)
     private Double SellingPrice;
 
     @Column(name="Brand", length=50)
     private String Brand;
 
+    @CreationTimestamp
     @Column(name="date")
     private LocalDateTime date;
 
